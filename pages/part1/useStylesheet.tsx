@@ -1,7 +1,15 @@
 import styled from "@emotion/styled";
 import { NextPage } from "next";
+import { useEffect } from "react";
+import * as d3 from "d3";
 
 const useStylesheet: NextPage = () => {
+  useEffect(() => {
+    // attr("class", "name"): class 덮어쓰기
+    d3.select("circle").attr("class", "tentative");
+    // classed: class 추가 / 삭제 메소드
+    d3.select("circle").classed("active", true);
+  }, []);
   return (
     <Container
       id="infovizDiv"
