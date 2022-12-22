@@ -41,6 +41,12 @@ const Home: NextPage = () => {
         >
           circleHelloWorld
         </p>
+        <p
+          onClick={() => router.push("/part1/communicate")}
+          style={{ cursor: "pointer" }}
+        >
+          communicate
+        </p>
       </div>
     </>
   );
