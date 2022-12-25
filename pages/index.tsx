@@ -48,6 +48,13 @@ const Home: NextPage = () => {
           communicate
         </p>
       </div>
+      <div>
+        <h2>part2</h2>
+        <p onClick={() => router.push("/part2")} style={{ cursor: "pointer" }}>
+          index
+        </p>
+        
+      </div>
     </>
   );
 };
