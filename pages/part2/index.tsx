@@ -1,7 +1,7 @@
 import { GetServerSideProps, NextPage } from "next";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import path from "path";
-import { csv, DSVRowArray, extent, max, mean, min, select } from "d3";
+import { csv, DSVRowArray, extent, max, mean, min, select, html } from "d3";
 
 interface P {
   result: any;
@@ -9,15 +9,16 @@ interface P {
 
 const LoadCsv: NextPage<P> = ({}) => {
   const [data, setData] = useState<DSVRowArray>();
+  const ref = useRef(null);
   useEffect(() => {
+    const cities = select(ref.current);
     csv("/data/part2/cities.csv").then((e) => {
-      select("#city")
+      cities
         .selectAll("div.cities")
         .data(e)
-        .enter()
-        .append("div")
+        .join((enter) => enter.append("div"))
         .attr("class", "cities")
-        .html((d, i) => d.label);
+        .text((d) => d.label ?? "");
     });
   }, []);
 
@@ -28,7 +29,7 @@ const LoadCsv: NextPage<P> = ({}) => {
   useEffect(() => {
     console.log("data", data);
   }, [data]);
-  return <div id="city"></div>;
+  return <div ref={ref} id="city"></div>;
 };
 
 export default LoadCsv;
