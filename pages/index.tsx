@@ -59,6 +59,18 @@ const Home: NextPage = () => {
         >
           stick
         </p>
+        <p
+          onClick={() => router.push("/part2/city")}
+          style={{ cursor: "pointer" }}
+        >
+          city
+        </p>
+        <p
+          onClick={() => router.push("/part2/tweets")}
+          style={{ cursor: "pointer" }}
+        >
+          tweets
+        </p>
       </div>
     </>
   );
