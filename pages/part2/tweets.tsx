@@ -6,11 +6,20 @@ import { nest } from "d3-collection";
 
 const Tweets: NextPage = () => {
   const dataViz = (inconmingData: ITweet[]) => {
-    const nestedTweets = group(inconmingData, (d) => d.user);
-    console.log("nestedTweets", nestedTweets);
-    const maxTweets = max(nestedTweets, (el) => el.length);
-    console.log("maxTweets", maxTweets);
-    const yScale = scaleLinear().domain([0, maxTweets]).range([0, 100]);
+    const nestedTweets = Array.from(group(inconmingData, (d) => d.user)).map(
+      (d) => {
+        return {
+          key: d[0],
+          values: d[1],
+          numTweets: d[1].length,
+        };
+      }
+    );
+
+    const maxTweets = max(nestedTweets, (el) => el.numTweets);
+    const yScale = scaleLinear()
+      .domain([0, maxTweets ?? 0])
+      .range([0, 100]);
 
     select("svg")
       .selectAll("rect")
@@ -28,9 +37,8 @@ const Tweets: NextPage = () => {
   };
 
   useEffect(() => {
-    json("/data/part2/tweets.json").then((data: { tweets: ITweet[] }) => {
-      console.log("data", data);
-      dataViz(data.tweets);
+    json("/data/part2/tweets.json").then((data) => {
+      dataViz((data as { tweets: ITweet[] }).tweets);
     });
   }, []);
 
