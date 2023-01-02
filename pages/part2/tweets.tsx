@@ -44,7 +44,7 @@ const Tweets: NextPage = () => {
 
   return (
     <div>
-      <svg></svg>
+      <svg style={{ width: 500, height: 500, border: "1px solid lightgray" }} />
     </div>
   );
 };

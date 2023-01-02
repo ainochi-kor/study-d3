@@ -71,6 +71,12 @@ const Home: NextPage = () => {
         >
           tweets
         </p>
+        <p
+          onClick={() => router.push("/part2/measure_of_dispersion")}
+          style={{ cursor: "pointer" }}
+        >
+          measure_of_dispersion
+        </p>
       </div>
     </>
   );
