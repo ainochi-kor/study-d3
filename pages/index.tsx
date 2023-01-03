@@ -77,6 +77,12 @@ const Home: NextPage = () => {
         >
           measure_of_dispersion
         </p>
+        <p
+          onClick={() => router.push("/part2/binding_key")}
+          style={{ cursor: "pointer" }}
+        >
+          binding_key
+        </p>
       </div>
     </>
   );
