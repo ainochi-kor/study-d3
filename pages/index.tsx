@@ -41,6 +41,48 @@ const Home: NextPage = () => {
         >
           circleHelloWorld
         </p>
+        <p
+          onClick={() => router.push("/part1/communicate")}
+          style={{ cursor: "pointer" }}
+        >
+          communicate
+        </p>
+      </div>
+      <div>
+        <h2>part2</h2>
+        <p onClick={() => router.push("/part2")} style={{ cursor: "pointer" }}>
+          index
+        </p>
+        <p
+          onClick={() => router.push("/part2/stick")}
+          style={{ cursor: "pointer" }}
+        >
+          stick
+        </p>
+        <p
+          onClick={() => router.push("/part2/city")}
+          style={{ cursor: "pointer" }}
+        >
+          city
+        </p>
+        <p
+          onClick={() => router.push("/part2/tweets")}
+          style={{ cursor: "pointer" }}
+        >
+          tweets
+        </p>
+        <p
+          onClick={() => router.push("/part2/measure_of_dispersion")}
+          style={{ cursor: "pointer" }}
+        >
+          measure_of_dispersion
+        </p>
+        <p
+          onClick={() => router.push("/part2/binding_key")}
+          style={{ cursor: "pointer" }}
+        >
+          binding_key
+        </p>
       </div>
     </>
   );
