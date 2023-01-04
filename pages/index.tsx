@@ -84,6 +84,12 @@ const Home: NextPage = () => {
           binding_key
         </p>
       </div>
+      <div>
+        <h2>part3</h2>
+        <p onClick={() => router.push("/part3")} style={{ cursor: "pointer" }}>
+          index
+        </p>
+      </div>
     </>
   );
 };
