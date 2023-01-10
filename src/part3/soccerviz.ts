@@ -8,8 +8,15 @@ import {
   min,
   select,
   html,
+  scaleLinear,
 } from "d3";
 import { IWorldcup } from "../../public/data/part3/worldcup.type";
+
+declare global {
+  interface EventTarget {
+    name: string;
+  }
+}
 
 export const createSoccerViz = () => {
   // 데이터를 로딩하고 로딩된 데이터로 overallTeamViz() 함수를 호출.
@@ -47,4 +54,44 @@ const overallTeamViz = (incomingData: IWorldcup[]) => {
     .attr("y", 30)
     .style("font-size", "10px")
     .text((d) => (d as IWorldcup).team);
+
+  const dataKeys = Object.keys(incomingData[0]).filter(
+    (el) => el !== "team" && el !== "region"
+  );
+
+  const buttonClick = (datapoint: PointerEvent) => {
+    console.log("datapoint", datapoint);
+    if (datapoint) {
+      const key = datapoint.target!.name as keyof IWorldcup;
+      const maxValue = max(incomingData, (d) => Number(d[key]));
+
+      const radiusScale = (num: number) =>
+        scaleLinear()
+          .domain([0, maxValue ?? 0])
+          .range([2, 20]);
+
+      selectAll("g.overallG")
+        .select("circle")
+        .transition()
+        .duration(1000)
+        .attr("r", function (d) {
+          return radiusScale(d[key]);
+        });
+    }
+  };
+
+  const highlightRegion = (d: any) => {
+    console.log("d", d);
+  };
+
+  select("#controls")
+    .selectAll("button.teams")
+    .data(dataKeys)
+    .enter()
+    .append("button")
+    .attr("name", (d) => d)
+    .on("click", buttonClick)
+    .html((d) => d);
+
+  teamG.on("mouseover", highlightRegion);
 };
