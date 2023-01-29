@@ -12,6 +12,9 @@ const Home: NextPage = () => {
       <Head>
         <title>Study D3.js</title>
       </Head>
+      <p onClick={() => router.push("/docs")} style={{ cursor: "pointer" }}>
+        docs
+      </p>
       <div>
         <h2>part1</h2>
         <p onClick={() => router.push("/part1")} style={{ cursor: "pointer" }}>
