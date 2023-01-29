@@ -1,13 +1,12 @@
+import styled from "@emotion/styled";
 import { NextPage } from "next";
 import { useEffect } from "react";
-import styled from "styled-components";
 import { createSoccerViz } from "../../src/part3/soccerviz";
 
 const Index: NextPage = () => {
-
   useEffect(() => {
-    createSoccerViz()
-  },[])
+    createSoccerViz();
+  }, []);
 
   return (
     <Container>
